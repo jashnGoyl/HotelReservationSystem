@@ -93,7 +93,7 @@ public class HotelReservationSystem {
             int reservationID = scanner.nextInt();
             scanner.nextLine();
 
-            if (!reservationExists(statement, reservationID)) {
+            if (reservationExists(statement, reservationID)) {
                 System.out.println("Reservation not found for given reservation ID");
                 return;
             }
@@ -130,7 +130,7 @@ public class HotelReservationSystem {
             System.out.println("Please enter the reservation id to be deleted: ");
             int reservationID = scanner.nextInt();
 
-            if (!reservationExists(statement, reservationID)) {
+            if (reservationExists(statement, reservationID)) {
                 System.out.println("Reservation not found for given reservation ID");
                 return;
             }
@@ -156,10 +156,10 @@ public class HotelReservationSystem {
             String query = "SELECT reservation_id FROM reservations " +
                     "WHERE reservation_id = " + reservationID + ";";
             ResultSet resultSet = statement.executeQuery(query);
-            return resultSet.next();
+            return !resultSet.next();
         } catch (SQLException e) {
             System.err.println("Exception: " + e.getMessage());
-            return false;
+            return true;
         }
     }
 
