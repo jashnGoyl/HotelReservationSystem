@@ -1,4 +1,3 @@
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -69,16 +68,16 @@ public class HotelReservationSystem {
         System.out.println("Please enter the guest name: ");
         String guestName = scanner.next();
 
-        String query = "SELECT room_number FROM reservations" +
+        String query = "SELECT room_number FROM reservations " +
                 "WHERE reservation_id = " + reservationID +
-                "AND guest_name = '" + guestName + "';";
+                " AND guest_name = '" + guestName + "';";
 
         try {
             ResultSet resultSet = statement.executeQuery(query);
             if (resultSet.next()) {
                 int roomNumber = resultSet.getInt("room_number");
                 System.out.println("Room number for Reservation ID " + reservationID +
-                        "and Guest " + guestName + "is: " + roomNumber);
+                        " and Guest " + guestName + " is: " + roomNumber);
             } else {
                 System.out.println("Reservation not found for the given " +
                         "Reservation ID and Guest");
@@ -106,10 +105,10 @@ public class HotelReservationSystem {
             System.out.println("Enter the new Contact Number: ");
             String newContactNumber = scanner.next();
 
-            String query = "UPDATE reservations" +
+            String query = "UPDATE reservations " +
                     "SET guest_name = '" + newGuestName + "', room_number = " + newRoomNumber +
-                    ",contact_number = '" + newContactNumber + "'" +
-                    "WHERE reservation_id = " + reservationID + ";";
+                    ", contact_number = '" + newContactNumber + "'" +
+                    " WHERE reservation_id = " + reservationID + ";";
             try {
                 int affectedRows = statement.executeUpdate(query);
                 if (affectedRows > 0) {
@@ -165,7 +164,7 @@ public class HotelReservationSystem {
     }
 
     protected void exit() throws InterruptedException {
-        System.out.println("Exiting System!!!");
+        System.out.print("Exiting System!!!");
         int i = 5;
         while (i != 0) {
             System.out.print(".");
